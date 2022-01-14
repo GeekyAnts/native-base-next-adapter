@@ -1,0 +1,2 @@
+# native-base-next-adapter
+
