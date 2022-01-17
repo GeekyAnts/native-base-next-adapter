@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import NextDocument from "next/document";
 export declare const style: string;
 
