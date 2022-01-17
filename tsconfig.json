@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "composite": true,
+    "inlineSources": true,
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "typeRoots": [
+      "./ts-declarations",
+      "node_modules/@types",
+      "../../node_modules/@types"
+    ],
+    "outDir": "build",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*.ts"],
+
+  "exclude": ["**/__mocks__/*", "**/__tests__/*"]
+}
