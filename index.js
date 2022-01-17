@@ -1,0 +1,1 @@
+console.log("Native-base-next-adapter");
