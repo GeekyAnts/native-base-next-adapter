@@ -13,7 +13,9 @@
       "../../node_modules/@types"
     ],
     "outDir": "build",
-    "rootDir": "src"
+    "rootDir": "src",
+    "allowJs": true,
+    "jsx": "preserve"
   },
   "include": ["src/**/*.ts"],
 
