@@ -1,0 +1,62 @@
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+exports.__esModule = true;
+function withNativebase(nextConfig) {
+    if (nextConfig === void 0) { nextConfig = {}; }
+    var withPlugins = require("next-compose-plugins");
+    var withTM = require("next-transpile-modules")([
+        "native-base",
+        "react-native-svg",
+        "react-native-web",
+        "react-native-safe-area-context",
+        "@react-aria/visually-hidden",
+        "@react-native-aria/button",
+        "@react-native-aria/checkbox",
+        "@react-native-aria/combobox",
+        "@react-native-aria/focus",
+        "@react-native-aria/interactions",
+        "@react-native-aria/listbox",
+        "@react-native-aria/overlays",
+        "@react-native-aria/radio",
+        "@react-native-aria/slider",
+        "@react-native-aria/tabs",
+        "@react-native-aria/utils",
+        "@react-stately/combobox",
+        "@react-stately/radio",
+    ]);
+    return withPlugins([
+        withTM,
+        // your plugins go here.
+    ], __assign(__assign({}, nextConfig), { webpack: function (config, options) {
+            config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
+                // Transform all direct `react-native` imports to `react-native-web`
+                "react-native$": "react-native-web" });
+            config.resolve.extensions = __spreadArray([
+                ".web.js",
+                ".web.ts",
+                ".web.tsx"
+            ], config.resolve.extensions, true);
+            return config;
+        } }));
+}
+exports["default"] = withNativebase;
+//# sourceMappingURL=withNativebase.js.map

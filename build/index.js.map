@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,mDAA6D;AAApD,wEAAyB;AAClC,oDAAoD","sourcesContent":["export { default as withNativebase } from \"./withNativebase\";\n// export { default as Document } from \"./document\";\n"]}

@@ -49,7 +49,7 @@
 //   }
 // );
 
-const { withNativebase } = require("./withNativebase");
+const { withNativebase } = require("native-base-next-adapter");
 
 module.exports = withNativebase({
   experimental: {
