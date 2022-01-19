@@ -1,6 +1,6 @@
 {
   "name": "native-base-next-adapter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/index.js",
   "repository": "git@git.geekyants.com:nativebase-v3/native-base-next-adapter.git",
   "author": "madhav23bansal <madhavb230100@gmail.com>",
@@ -14,7 +14,7 @@
     "react": "^17.0.2",
     "react-native-web": "^0.17.5"
   },
-  "dependencies": {
+  "devDependencies": {
     "next": "^12.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
