@@ -1,4 +1,14 @@
-export default function withNativebase(nextConfig = {}) {
+type withNativebaseParam = {
+  plugin: any;
+  nextConfig?: Object;
+  phase?: Array<any>;
+};
+
+export default function withNativebase({
+  plugin,
+  nextConfig = {},
+  phase = [],
+}: withNativebaseParam) {
   const withPlugins = require("next-compose-plugins");
   const withTM = require("next-transpile-modules")([
     "native-base",
@@ -24,6 +34,7 @@ export default function withNativebase(nextConfig = {}) {
   return withPlugins(
     [
       withTM,
+      ...plugin,
       // your plugins go here.
     ],
     {
@@ -42,6 +53,7 @@ export default function withNativebase(nextConfig = {}) {
         ];
         return config;
       },
-    }
+    },
+    [...phase]
   );
 }

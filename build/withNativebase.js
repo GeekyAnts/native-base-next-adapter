@@ -20,8 +20,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
-function withNativebase(nextConfig) {
-    if (nextConfig === void 0) { nextConfig = {}; }
+function withNativebase(_a) {
+    var plugin = _a.plugin, _b = _a.nextConfig, nextConfig = _b === void 0 ? {} : _b, _c = _a.phase, phase = _c === void 0 ? [] : _c;
     var withPlugins = require("next-compose-plugins");
     var withTM = require("next-transpile-modules")([
         "native-base",
@@ -43,10 +43,9 @@ function withNativebase(nextConfig) {
         "@react-stately/combobox",
         "@react-stately/radio",
     ]);
-    return withPlugins([
-        withTM,
-        // your plugins go here.
-    ], __assign(__assign({}, nextConfig), { webpack: function (config, options) {
+    return withPlugins(__spreadArray([
+        withTM
+    ], plugin, true), __assign(__assign({}, nextConfig), { webpack: function (config, options) {
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
                 "react-native$": "react-native-web" });
@@ -56,7 +55,7 @@ function withNativebase(nextConfig) {
                 ".web.tsx"
             ], config.resolve.extensions, true);
             return config;
-        } }));
+        } }), __spreadArray([], phase, true));
 }
 exports["default"] = withNativebase;
 //# sourceMappingURL=withNativebase.js.map
