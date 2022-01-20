@@ -937,6 +937,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.8.tgz#50d680c8a8a78fe30abe6906453b21ad8ab0ad7b"
   integrity sha512-YofkM6fGv4gDJq78g4j0mMuGMkZVxZDgtU0JRdx6FgiJDG+0fY0GKVolOV8WqVmEhLCXkQRjwDdKyPxJp/uucg==
 
+"@types/node@^17.0.10":
+  version "17.0.10"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.10.tgz#616f16e9d3a2a3d618136b1be244315d95bd7cab"
+  integrity sha512-S/3xB4KzyFxYGCppyDt68yzBU9ysL88lSdIah4D6cptdcltc4NCPCAMc0+PCpg/lLIyC7IPvj2Z52OJWeIUkog==
+
 "@types/prop-types@*":
   version "15.7.4"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
@@ -2327,10 +2332,12 @@ nanoid@^3.1.23:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.2.0.tgz#62667522da6673971cca916a6d3eff3f415ff80c"
   integrity sha512-fmsZYa9lpn69Ad5eDn7FMcnnSR+8R34W9qJEijxYhTbfOWzr22n1QxCMzXLK+ODyW2973V3Fux959iQoUxzUIA==
 
-native-base-next-adapter@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/native-base-next-adapter/-/native-base-next-adapter-1.0.2.tgz#e8f24f03416bfe7b5b35b9a697da051fb1b96248"
-  integrity sha512-ezlkzwLn+pFr7C1SVP4V8EIa8MiiIsJTPqGgUP1Vm9OOf0nY+EpDbQ8UvZCVYyombO4UnOR4fUzDx8xk5YLFVA==
+native-base-next-adapter@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/native-base-next-adapter/-/native-base-next-adapter-1.0.3.tgz#703d7e91466c4c203c20afdf131b9b953b941648"
+  integrity sha512-vb7N/TGH6tLgNlosPEazjUaFtUD2mW70oH6qT8p7DMSEVI1kUEIemicXIBo6jef1eDAVMtglu+ATYY8OIA9Wxw==
+  dependencies:
+    "@types/node" "^17.0.10"
 
 native-base@^3.3.2:
   version "3.3.2"

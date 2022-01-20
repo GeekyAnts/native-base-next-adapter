@@ -1,7 +1,7 @@
 // import Document from "../../document";
 // import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
-export { Document } from "native-base-next-adapter";
+export { default } from "native-base-next-adapter/document";
 // export default class MyDocument extends Document {
 //   // console.log(<Document />);
 //   // return <Document />;
