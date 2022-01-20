@@ -1,6 +1,6 @@
 {
   "name": "native-base-next-adapter",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "build/index.js",
   "repository": "git@git.geekyants.com:nativebase-v3/native-base-next-adapter.git",
   "author": "madhav23bansal <madhavb230100@gmail.com>",
