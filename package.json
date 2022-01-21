@@ -1,16 +1,26 @@
 {
   "name": "native-base-next-adapter",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.16",
+  "main": "build/index.js",
   "repository": "git@git.geekyants.com:nativebase-v3/native-base-next-adapter.git",
   "author": "madhav23bansal <madhavb230100@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./index.js",
+    "build": "tsc"
   },
   "peerDependencies": {
+    "next": "*",
+    "react": "*",
+    "react-native-web": "*"
+  },
+  "devDependencies": {
     "next": "^12.0.8",
     "react": "^17.0.2",
-    "react-native-web": "^0.17.5"
-  }
+    "react-dom": "^17.0.2",
+    "react-native-web": "^0.17.5",
+    "tsc": "^2.0.4",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {}
 }

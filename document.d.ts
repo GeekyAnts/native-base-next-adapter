@@ -1,15 +1,7 @@
 import NextDocument from "next/document";
-export declare const style: string;
-
-export declare function getInitialProps({
-  renderPage,
-}: {
-  renderPage: any;
-}): Promise<any>;
-
-export declare class Document extends NextDocument {
-  static getInitialProps: typeof getInitialProps;
-  render(): JSX.Element;
+export default class Document extends NextDocument {
+    static getInitialProps({ renderPage }: {
+        renderPage: any;
+    }): Promise<any>;
+    render(): any;
 }
-
-export default Document;
