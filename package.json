@@ -1,6 +1,6 @@
 {
   "name": "next-adapter-native-base",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.1",
   "main": "build/index.js",
   "repository": "https://github.com/GeekyAnts/native-base-next-adapter.git",
   "license": "MIT",
