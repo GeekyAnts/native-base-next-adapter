@@ -10,5 +10,4 @@ exports.__esModule = true;
 exports.withNativebase = void 0;
 var withNativebase_1 = require("./withNativebase");
 __createBinding(exports, withNativebase_1, "default", "withNativebase");
-// export { default as Document } from "./document";
 //# sourceMappingURL=index.js.map

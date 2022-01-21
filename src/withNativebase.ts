@@ -5,11 +5,12 @@ type withNativebaseParam = {
 };
 
 export default function withNativebase({
-  plugin,
+  plugin = [],
   nextConfig = {},
   phase = [],
 }: withNativebaseParam) {
   const withPlugins = require("next-compose-plugins");
+  const withFonts = require("next-fonts");
   const withTM = require("next-transpile-modules")([
     "native-base",
     "react-native-svg",
@@ -34,6 +35,7 @@ export default function withNativebase({
   return withPlugins(
     [
       withTM,
+      [withFonts, { projectRoot: __dirname }],
       ...plugin,
       // your plugins go here.
     ],

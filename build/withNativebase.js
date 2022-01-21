@@ -21,8 +21,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 exports.__esModule = true;
 function withNativebase(_a) {
-    var plugin = _a.plugin, _b = _a.nextConfig, nextConfig = _b === void 0 ? {} : _b, _c = _a.phase, phase = _c === void 0 ? [] : _c;
+    var _b = _a.plugin, plugin = _b === void 0 ? [] : _b, _c = _a.nextConfig, nextConfig = _c === void 0 ? {} : _c, _d = _a.phase, phase = _d === void 0 ? [] : _d;
     var withPlugins = require("next-compose-plugins");
+    var withFonts = require("next-fonts");
     var withTM = require("next-transpile-modules")([
         "native-base",
         "react-native-svg",
@@ -44,7 +45,8 @@ function withNativebase(_a) {
         "@react-stately/radio",
     ]);
     return withPlugins(__spreadArray([
-        withTM
+        withTM,
+        [withFonts, { projectRoot: __dirname }]
     ], plugin, true), __assign(__assign({}, nextConfig), { webpack: function (config, options) {
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
