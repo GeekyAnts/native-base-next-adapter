@@ -1,6 +1,6 @@
 {
   "name": "@native-base/next-adapter",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "build/index.js",
   "license": "MIT",
   "scripts": {
@@ -19,5 +19,7 @@
     "tsc": "^2.0.4",
     "typescript": "^4.5.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react-native-vector-icons-for-web": "^0.1.7"
+  }
 }
