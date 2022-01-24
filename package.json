@@ -1,8 +1,7 @@
 {
-  "name": "next-adapter-native-base",
-  "version": "1.0.2",
+  "name": "@native-base/next-adapter",
+  "version": "1.0.4",
   "main": "build/index.js",
-  "repository": "https://github.com/GeekyAnts/native-base-next-adapter.git",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
