@@ -43,6 +43,7 @@ function withNativebase(_a) {
         "@react-native-aria/utils",
         "@react-stately/combobox",
         "@react-stately/radio",
+        "@native-base/next-adapter",
     ]);
     return withPlugins(__spreadArray([
         withTM,

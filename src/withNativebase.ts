@@ -30,6 +30,7 @@ export default function withNativebase({
     "@react-native-aria/utils",
     "@react-stately/combobox",
     "@react-stately/radio",
+    "@native-base/next-adapter",
   ]);
 
   return withPlugins(
