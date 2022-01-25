@@ -1,4 +1,4 @@
-# native-base-next-adapter
+# @native-base/next-adapter
 
 ### Manual Installation
 
