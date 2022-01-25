@@ -1,6 +1,6 @@
 type withNativebaseParam = {
   plugin: any;
-  nextConfig?: Object;
+  nextConfig?: any;
   phase?: Array<any>;
 };
 
@@ -9,9 +9,8 @@ export default function withNativebase({
   nextConfig = {},
   phase = [],
 }: withNativebaseParam) {
-  const withPlugins = require("next-compose-plugins");
-  const withFonts = require("next-fonts");
-  const withTM = require("next-transpile-modules")([
+  // const { webpack, ...config } = nextConfig;
+  let dependencies = [
     "native-base",
     "react-native-svg",
     "react-native-web",
@@ -31,7 +30,13 @@ export default function withNativebase({
     "@react-stately/combobox",
     "@react-stately/radio",
     "@native-base/next-adapter",
-  ]);
+  ];
+  if (plugin[0] !== undefined) {
+    dependencies = [...dependencies, ...plugin[0]];
+  }
+  const withPlugins = require("next-compose-plugins");
+  const withFonts = require("next-fonts");
+  const withTM = require("next-transpile-modules")(dependencies);
 
   return withPlugins(
     [
@@ -41,12 +46,12 @@ export default function withNativebase({
       // your plugins go here.
     ],
     {
-      ...nextConfig,
       webpack: (config, options) => {
         config.resolve.alias = {
           ...(config.resolve.alias || {}),
           // Transform all direct `react-native` imports to `react-native-web`
           "react-native$": "react-native-web",
+          // "@expo/vector-icons": "react-native-vector-icons",
         };
         config.resolve.extensions = [
           ".web.js",
@@ -56,6 +61,7 @@ export default function withNativebase({
         ];
         return config;
       },
+      ...nextConfig,
     },
     [...phase]
   );

@@ -22,9 +22,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 exports.__esModule = true;
 function withNativebase(_a) {
     var _b = _a.plugin, plugin = _b === void 0 ? [] : _b, _c = _a.nextConfig, nextConfig = _c === void 0 ? {} : _c, _d = _a.phase, phase = _d === void 0 ? [] : _d;
-    var withPlugins = require("next-compose-plugins");
-    var withFonts = require("next-fonts");
-    var withTM = require("next-transpile-modules")([
+    // const { webpack, ...config } = nextConfig;
+    var dependencies = [
         "native-base",
         "react-native-svg",
         "react-native-web",
@@ -44,11 +43,17 @@ function withNativebase(_a) {
         "@react-stately/combobox",
         "@react-stately/radio",
         "@native-base/next-adapter",
-    ]);
+    ];
+    if (plugin[0] !== undefined) {
+        dependencies = __spreadArray(__spreadArray([], dependencies, true), plugin[0], true);
+    }
+    var withPlugins = require("next-compose-plugins");
+    var withFonts = require("next-fonts");
+    var withTM = require("next-transpile-modules")(dependencies);
     return withPlugins(__spreadArray([
         withTM,
         [withFonts, { projectRoot: __dirname }]
-    ], plugin, true), __assign(__assign({}, nextConfig), { webpack: function (config, options) {
+    ], plugin, true), __assign({ webpack: function (config, options) {
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
                 "react-native$": "react-native-web" });
@@ -58,7 +63,7 @@ function withNativebase(_a) {
                 ".web.tsx"
             ], config.resolve.extensions, true);
             return config;
-        } }), __spreadArray([], phase, true));
+        } }, nextConfig), __spreadArray([], phase, true));
 }
 exports["default"] = withNativebase;
 //# sourceMappingURL=withNativebase.js.map

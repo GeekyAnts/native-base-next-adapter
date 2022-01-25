@@ -1,6 +1,6 @@
 declare type withNativebaseParam = {
     plugin: any;
-    nextConfig?: Object;
+    nextConfig?: any;
     phase?: Array<any>;
 };
 export default function withNativebase({ plugin, nextConfig, phase, }: withNativebaseParam): any;

@@ -349,6 +349,11 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-vector-icons-for-web@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-vector-icons-for-web/-/react-native-vector-icons-for-web-0.1.7.tgz#6e007f8a7aac4f97f31adc9d64d625bd7a40e886"
+  integrity sha512-L5hIEoBo5J3+rWVLn5dd/rAE1l5Up47v2VZ5GqwC/2fuEcSmxE3OFZKhgXaqjgC2kof/jhCVhpzXFdndBGSTEw==
+
 react-native-web@^0.17.5:
   version "0.17.5"
   resolved "https://registry.yarnpkg.com/react-native-web/-/react-native-web-0.17.5.tgz#2c27452b4654fb098c3c412cb04c379add1015a6"
