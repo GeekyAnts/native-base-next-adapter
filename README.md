@@ -65,6 +65,7 @@ module.exports = withNativebase(
 ```
 
 
+## Steps to integrate icons in Nextjs with native-base
 - yarn add @expo/next-adapter react-native-vector-icons @expo/vector-icons
 - We need to overwrite `next.config.js`  with custom webpack configurations
 
