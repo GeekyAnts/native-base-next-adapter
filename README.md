@@ -11,7 +11,7 @@
 
 This project was designed to make integration of nativebase in next apps easier
 
-[Next.js](https://nextjs.org/) is a React framework that provides simple page-based routing as well as server-side rendering. To use Next.js with native-base for web we recommend that you use a library called `[@native-base/next-adapter](https://github.com/GeekyAnts/native-base-next-adapter)` to handle the configuration and integration of the tools.
+[Next.js](https://nextjs.org/) is a React framework that provides simple page-based routing as well as server-side rendering. To use Next.js with native-base for web we recommend that you use a library called [@native-base/next-adapter](https://github.com/GeekyAnts/native-base-next-adapter) to handle the configuration and integration of the tools.
 
 ## Built With
 
@@ -86,7 +86,11 @@ module.exports = withNativebase(
 );
 ```
 
-[screen-recording-2022-01-25-at-15211-pm_5Y7ZUfga (1).mp4](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5b548ae-324a-4de9-8264-91f68254c1db/screen-recording-2022-01-25-at-15211-pm_5Y7ZUfga_(1).mp4)
+
+https://user-images.githubusercontent.com/47877976/151315307-dd70e9e9-15b0-44e5-831a-bb0e4be090be.mp4
+
+
+
 
 ## **Contributing**
 
