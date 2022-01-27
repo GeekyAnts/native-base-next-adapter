@@ -92,6 +92,8 @@ https://user-images.githubusercontent.com/47877976/151315307-dd70e9e9-15b0-44e5-
 
 
 
+
+
 ## Steps to integrate icons in Nextjs with native-base
 - yarn add @expo/next-adapter react-native-vector-icons @expo/vector-icons
 - We need to overwrite `next.config.js`  with custom webpack configurations
