@@ -24,7 +24,7 @@ This project was designed to make integration of nativebase in next apps easier
 
 ### Usage
 
-- `yarn add **@native-base/next-adapter** next-compose-plugins next-transpile-modules next-fonts  -D`
+- `yarn add @native-base/next-adapter next-compose-plugins next-transpile-modules next-fonts  -D`
 - `yarn add react-native-web native-base react-native-svg react-native-safe-area-context`
 - Re-export the custom `Document` component in the **`pages/_document.js`** file of your Next.js project.
     - This will ensure `react-native-web` styling works.
@@ -60,7 +60,6 @@ type ConfigType = {
 
     - dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
     
-    
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
     
@@ -75,7 +74,6 @@ type ConfigType = {
     
     - plugins: It is an array containing all plugins and their configuration.
     
-    
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
     const sass = require("@zeit/next-sass");
@@ -86,7 +84,6 @@ type ConfigType = {
     ```
     
     - nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase:
-    
     
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
@@ -113,9 +110,10 @@ type ConfigType = {
     ```
     
 
-2. phase
-
-If the plugin should only be applied in specific phases, you can specify them here. You can use all phases [next.js provides](https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/constants.ts#L1-L4).
+1. phase
+    
+    If the plugin should only be applied in specific phases, you can specify them here. You can   use  all phases [next.js provides](https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/constants.ts#L1-L4).
+    
 
 ```jsx
 const withPlugins = require('next-compose-plugins');
