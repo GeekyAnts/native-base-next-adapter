@@ -11,7 +11,7 @@
 
 This project was designed to make integration of nativebase in next apps easier
 
-[Next.js](https://nextjs.org/) is a React framework that provides simple page-based routing as well as server-side rendering. To use Next.js with native-base for web we recommend that you use a library called [@native-base/next-adapter](https://github.com/GeekyAnts/native-base-next-adapter) to handle the configuration and integration of the tools.
+[Next.js](https://nextjs.org/) is a React framework that provides simple page-based routing as well as server-side rendering. To use Next.js with native-base for web we recommend that you use a library called `[@native-base/next-adapter](https://github.com/GeekyAnts/native-base-next-adapter)` to handle the configuration and integration of the tools.
 
 ## Built With
 
@@ -24,9 +24,9 @@ This project was designed to make integration of nativebase in next apps easier
 
 ### Usage
 
-- yarn add **@native-base/next-adapter** next-compose-plugins next-transpile-modules next-fonts  -D
-- yarn add react-native-web native-base react-native-svg react-native-safe-area-context
-- Re-export the custom `Document` component in the **pages/_document.js** file of your Next.js project.
+- `yarn add **@native-base/next-adapter** next-compose-plugins next-transpile-modules next-fonts  -D`
+- `yarn add react-native-web native-base react-native-svg react-native-safe-area-context`
+- Re-export the custom `Document` component in the **`pages/_document.js`** file of your Next.js project.
     - This will ensure `react-native-web` styling works.
     - Wraps all the css in style tag on server side (thus preventing css flicker issue)
     - Or you can create the file - `mkdir pages; touch pages/_document.js`
@@ -35,58 +35,99 @@ This project was designed to make integration of nativebase in next apps easier
     
     `export { default } from '@native-base/next-adapter/document';`
     
-- Update next.config.json with below code
+- Update `next.config.json` with below code
 
   Custom withNativebase function implements withPlugins function from [next-compose-plugins](https://github.com/cyrilwanner/next-compose-plugins#usage).
 
-  WithNativebase function takes in 3 parameters 
-
-      **`[plugin: function, configuration?: object, phases?: array]`**
+  WithNativebase function takes in 2 parameters :
 
 ```jsx
-const { withNativebase } = require("@native-base/next-adapter");
+type withNativebaseParam = {
+  config: ConfigType;
+  phase?: Array;
+}
 
-module.exports = withNativebase([], {
-  projectRoot: __dirname,
-});
+type ConfigType = {
+  dependencies?: Array<string>;
+  plugins?: Array<function>;
+  nextConfig?: Object;
+};
 ```
 
-- Incase we want to transpile some packages using `next-transpile-modules` we can pass the              name of modules as first parameter in plugin as array.
-- Incase you want to add extra configurations in webpack, we need to override the configuration provided by adapter and combine native-base webpack configurations with custom configuration.
+ 
 
-      
+1. config parameter is an object with 3 keys
+
+    - dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
+    
+    ```jsx
+    const { withNativebase } = require("@native-base/next-adapter");
+    
+    module.exports = withNativebase({
+      dependencies: [
+        "@expo/next-adapter",
+        "react-native-vector-icons",
+        "react-native-vector-icons-for-web",
+      ],
+    });
+    ```
+    
+    - plugins: It is an array containing all plugins and their configuration.
+    
+    ```jsx
+    const { withNativebase } = require("@native-base/next-adapter");
+    const sass = require("@zeit/next-sass");
+    
+    module.exports = withNativebase({
+      plugins: [[sass]],  
+    });
+    ```
+    
+    - nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase:
+    
+    ```jsx
+    const { withNativebase } = require("@native-base/next-adapter");
+    
+    module.exports = withNativebase({
+      nextConfig: {
+        projectRoot: __dirname,
+        webpack: (config, options) => {
+          config.resolve.alias = {
+            ...(config.resolve.alias || {}),
+            "react-native$": "react-native-web",
+            "@expo/vector-icons": "react-native-vector-icons",
+          };
+          config.resolve.extensions = [
+            ".web.js",
+            ".web.ts",
+            ".web.tsx",
+            ...config.resolve.extensions,
+          ];
+          return config;
+        },
+      },
+    });
+    ```
+    
+
+2. phase
+
+If the plugin should only be applied in specific phases, you can specify them here. You can use all phases [next.js provides](https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/constants.ts#L1-L4).
 
 ```jsx
-module.exports = withNativebase(
-  [
-    [
-      "@expo/next-adapter",
-      "react-native-vector-icons",
-      "react-native-vector-icons-for-web",
-    ],
-  ],
-  {
-    projectRoot: __dirname,
-    webpack: (config, options) => {
-      config.resolve.alias = {
-        ...(config.resolve.alias || {}),
-        // Transform all direct `react-native` imports to `react-native-web`
-        "react-native": "react-native-web",
-        "@expo/vector-icons": "react-native-vector-icons",
-      };
-      config.resolve.extensions = [
-        ".web.js",
-        ".web.ts",
-        ".web.tsx",
-        ...config.resolve.extensions,
-      ];
-      return config;
+const withPlugins = require('next-compose-plugins');
+const { PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD } = require('next/constants');
+const sass = require('@zeit/next-sass');
+
+module.exports = withPlugins([
+  [sass, {
+    cssModules: true,
+    cssLoaderOptions: {
+      localIdentName: '[path]___[local]___[hash:base64:5]',
     },
-  }
-);
+  }, [PHASE_DEVELOPMENT_SERVER, PHASE_PRODUCTION_BUILD]],
+]);
 ```
-
-
 https://user-images.githubusercontent.com/47877976/151315307-dd70e9e9-15b0-44e5-831a-bb0e4be090be.mp4
 
 
