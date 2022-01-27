@@ -60,6 +60,7 @@ type ConfigType = {
 
     - dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
     
+    
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
     
@@ -74,6 +75,7 @@ type ConfigType = {
     
     - plugins: It is an array containing all plugins and their configuration.
     
+    
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
     const sass = require("@zeit/next-sass");
@@ -84,6 +86,7 @@ type ConfigType = {
     ```
     
     - nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase:
+    
     
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
@@ -142,21 +145,18 @@ https://user-images.githubusercontent.com/47877976/151315307-dd70e9e9-15b0-44e5-
 ```jsx
 const { withNativebase } = require("@native-base/next-adapter");
 
-module.exports = withNativebase(
-  [
-    [
-      "@expo/next-adapter",
-      "react-native-vector-icons",
-      "react-native-vector-icons-for-web",
-    ],
+module.exports = withNativebase({
+  dependencies: [
+    "@expo/next-adapter",
+    "react-native-vector-icons",
+    "react-native-vector-icons-for-web",
   ],
-  {
+  nextConfig: {
     projectRoot: __dirname,
     webpack: (config, options) => {
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        // Transform all direct `react-native` imports to `react-native-web`
-        "react-native": "react-native-web",
+        "react-native$": "react-native-web",
         "@expo/vector-icons": "react-native-vector-icons",
       };
       config.resolve.extensions = [
@@ -167,8 +167,9 @@ module.exports = withNativebase(
       ];
       return config;
     },
-  }
-);
+  },
+});
+
 ```
 
 - Re-export the custom `Document` component in the **pages/_document.js** file of your Next.js project.
