@@ -59,6 +59,7 @@ type ConfigType = {
 1. config parameter is an object with 3 keys
 
     - dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
+
     
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
@@ -73,6 +74,7 @@ type ConfigType = {
     ```
     
     - plugins: It is an array containing all plugins and their configuration.
+
     
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
@@ -84,6 +86,7 @@ type ConfigType = {
     ```
     
     - nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase:
+
     
     ```jsx
     const { withNativebase } = require("@native-base/next-adapter");
