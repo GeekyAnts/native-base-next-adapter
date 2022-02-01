@@ -1,7 +1,7 @@
-declare type withNativebaseParam = {
-    plugin: any;
-    nextConfig?: any;
-    phase?: Array<any>;
+declare type ConfigType = {
+    dependencies: Array<any>;
+    plugins: Array<any>;
+    nextConfig: any;
 };
-export default function withNativebase({ plugin, nextConfig, phase, }: withNativebaseParam): any;
+export default function withNativebase(config?: ConfigType, phase?: Array<any>): any;
 export {};

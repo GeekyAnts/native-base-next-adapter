@@ -20,8 +20,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 exports.__esModule = true;
-function withNativebase(_a) {
-    var _b = _a.plugin, plugin = _b === void 0 ? [] : _b, _c = _a.nextConfig, nextConfig = _c === void 0 ? {} : _c, _d = _a.phase, phase = _d === void 0 ? [] : _d;
+function withNativebase(config, phase) {
+    if (config === void 0) { config = { dependencies: [], plugins: [], nextConfig: {} }; }
+    if (phase === void 0) { phase = []; }
     // const { webpack, ...config } = nextConfig;
     var dependencies = [
         "native-base",
@@ -44,8 +45,8 @@ function withNativebase(_a) {
         "@react-stately/radio",
         "@native-base/next-adapter",
     ];
-    if (plugin[0] !== undefined) {
-        dependencies = __spreadArray(__spreadArray([], dependencies, true), plugin[0], true);
+    if (config.dependencies !== undefined) {
+        dependencies = __spreadArray(__spreadArray([], dependencies, true), config.dependencies, true);
     }
     var withPlugins = require("next-compose-plugins");
     var withFonts = require("next-fonts");
@@ -53,7 +54,7 @@ function withNativebase(_a) {
     return withPlugins(__spreadArray([
         withTM,
         [withFonts, { projectRoot: __dirname }]
-    ], plugin, true), __assign({ webpack: function (config, options) {
+    ], (config.plugins || []), true), __assign({ webpack: function (config, options) {
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
                 "react-native$": "react-native-web" });
@@ -63,7 +64,12 @@ function withNativebase(_a) {
                 ".web.tsx"
             ], config.resolve.extensions, true);
             return config;
-        } }, nextConfig), __spreadArray([], phase, true));
+        } }, (config.nextConfig && config.nextConfig)), __spreadArray([], phase, true));
 }
 exports["default"] = withNativebase;
+// export {};
+// module.exports = {
+//   withNativebase,
+// };
+// export { withNativebase };
 //# sourceMappingURL=withNativebase.js.map

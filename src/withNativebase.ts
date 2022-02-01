@@ -1,14 +1,19 @@
+type ConfigType = {
+  dependencies: Array<any>;
+  plugins: Array<any>;
+  nextConfig: any;
+};
+
 type withNativebaseParam = {
-  plugin: any;
-  nextConfig?: any;
+  config: ConfigType;
+  // nextConfig?: any;
   phase?: Array<any>;
 };
 
-export default function withNativebase({
-  plugin = [],
-  nextConfig = {},
-  phase = [],
-}: withNativebaseParam) {
+export default function withNativebase(
+  config: ConfigType = { dependencies: [], plugins: [], nextConfig: {} },
+  phase: Array<any> = []
+) {
   // const { webpack, ...config } = nextConfig;
   let dependencies = [
     "native-base",
@@ -31,18 +36,18 @@ export default function withNativebase({
     "@react-stately/radio",
     "@native-base/next-adapter",
   ];
-  if (plugin[0] !== undefined) {
-    dependencies = [...dependencies, ...plugin[0]];
+
+  if (config.dependencies !== undefined) {
+    dependencies = [...dependencies, ...config.dependencies];
   }
   const withPlugins = require("next-compose-plugins");
   const withFonts = require("next-fonts");
   const withTM = require("next-transpile-modules")(dependencies);
-
   return withPlugins(
     [
       withTM,
       [withFonts, { projectRoot: __dirname }],
-      ...plugin,
+      ...(config.plugins || []),
       // your plugins go here.
     ],
     {
@@ -61,8 +66,15 @@ export default function withNativebase({
         ];
         return config;
       },
-      ...nextConfig,
+      ...(config.nextConfig && config.nextConfig),
     },
     [...phase]
   );
 }
+
+// export {};
+
+// module.exports = {
+//   withNativebase,
+// };
+// export { withNativebase };
