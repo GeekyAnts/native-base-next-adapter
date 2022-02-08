@@ -48,13 +48,17 @@ function withNativebase(config, phase) {
     if (config.dependencies !== undefined) {
         dependencies = __spreadArray(__spreadArray([], dependencies, true), config.dependencies, true);
     }
+    var path = require("path").path;
     var withPlugins = require("next-compose-plugins");
-    var withFonts = require("next-fonts");
     var withTM = require("next-transpile-modules")(dependencies);
     return withPlugins(__spreadArray([
-        withTM,
-        [withFonts, { projectRoot: __dirname }]
+        withTM
     ], (config.plugins || []), true), __assign({ webpack: function (config, options) {
+            config.module.rules.push({
+                test: /\.ttf$/,
+                loader: "url-loader",
+                include: path.resolve(__dirname, "node_modules/react-native-vector-icons")
+            });
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
                 "react-native$": "react-native-web" });
@@ -67,9 +71,4 @@ function withNativebase(config, phase) {
         } }, (config.nextConfig && config.nextConfig)), __spreadArray([], phase, true));
 }
 exports["default"] = withNativebase;
-// export {};
-// module.exports = {
-//   withNativebase,
-// };
-// export { withNativebase };
 //# sourceMappingURL=withNativebase.js.map

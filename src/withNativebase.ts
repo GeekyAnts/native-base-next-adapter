@@ -40,18 +40,25 @@ export default function withNativebase(
   if (config.dependencies !== undefined) {
     dependencies = [...dependencies, ...config.dependencies];
   }
+  const { path } = require("path");
   const withPlugins = require("next-compose-plugins");
-  const withFonts = require("next-fonts");
   const withTM = require("next-transpile-modules")(dependencies);
   return withPlugins(
     [
       withTM,
-      [withFonts, { projectRoot: __dirname }],
       ...(config.plugins || []),
       // your plugins go here.
     ],
     {
       webpack: (config, options) => {
+        config.module.rules.push({
+          test: /\.ttf$/,
+          loader: "url-loader", // or directly file-loader
+          include: path.resolve(
+            __dirname,
+            "node_modules/react-native-vector-icons"
+          ),
+        });
         config.resolve.alias = {
           ...(config.resolve.alias || {}),
           // Transform all direct `react-native` imports to `react-native-web`
@@ -71,10 +78,3 @@ export default function withNativebase(
     [...phase]
   );
 }
-
-// export {};
-
-// module.exports = {
-//   withNativebase,
-// };
-// export { withNativebase };
