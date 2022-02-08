@@ -54,11 +54,6 @@ function withNativebase(config, phase) {
     return withPlugins(__spreadArray([
         withTM
     ], (config.plugins || []), true), __assign({ webpack: function (config, options) {
-            config.module.rules.push({
-                test: /\.ttf$/,
-                loader: "url-loader",
-                include: path.resolve(__dirname, "node_modules/react-native-vector-icons")
-            });
             config.resolve.alias = __assign(__assign({}, (config.resolve.alias || {})), { 
                 // Transform all direct `react-native` imports to `react-native-web`
                 "react-native$": "react-native-web" });

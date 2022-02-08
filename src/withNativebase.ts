@@ -51,14 +51,6 @@ export default function withNativebase(
     ],
     {
       webpack: (config, options) => {
-        config.module.rules.push({
-          test: /\.ttf$/,
-          loader: "url-loader", // or directly file-loader
-          include: path.resolve(
-            __dirname,
-            "node_modules/react-native-vector-icons"
-          ),
-        });
         config.resolve.alias = {
           ...(config.resolve.alias || {}),
           // Transform all direct `react-native` imports to `react-native-web`
