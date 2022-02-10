@@ -59,64 +59,58 @@ type ConfigType = {
 ```
 
  
+### 1. Config parameter is an object with 3 keys:
 
-### 1. config parameter is an object with 3 keys
+- dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
 
-    - dependencies: List of dependencies which are transpiled using `[next-transpile-modules](https://github.com/martpie/next-transpile-modules)` .
-    <br/>
-    
-    ```jsx
-    const { withNativebase } = require("@native-base/next-adapter");
-    
-    module.exports = withNativebase({
-      dependencies: [
-      ],
-    });
-    ```
-    
-    - plugins: It is an array containing all plugins and their configuration.
-    <br/>
-    
-    ```jsx
-    const { withNativebase } = require("@native-base/next-adapter");
-    const sass = require("@zeit/next-sass");
-    
-    module.exports = withNativebase({
-      plugins: [[sass]],  
-    });
-    ```
-    
-    - nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase.
-     <br/>
-    
-    ```jsx
-    const { withNativebase } = require("@native-base/next-adapter");
-    
-    module.exports = withNativebase({
-      nextConfig: {
-        projectRoot: __dirname,
-        webpack: (config, options) => {
-          config.resolve.alias = {
-            ...(config.resolve.alias || {}),
-            "react-native$": "react-native-web",
-          };
-          config.resolve.extensions = [
-            ".web.js",
-            ".web.ts",
-            ".web.tsx",
-            ...config.resolve.extensions,
-          ];
-          return config;
-        },
-      },
-    });
-    ```
-    
+```jsx
+const { withNativebase } = require("@native-base/next-adapter");
 
-### 2. phase
-    
-    If the plugin should only be applied in specific phases, you can specify them here. You can   use  all phases [next.js provides](https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/constants.ts#L1-L4).
-    
+module.exports = withNativebase({
+  dependencies: [
+  ],
+});
+```
+
+- plugins: It is an array containing all plugins and their configuration.
+
+```jsx
+const { withNativebase } = require("@native-base/next-adapter");
+const sass = require("@zeit/next-sass");
+
+module.exports = withNativebase({
+  plugins: [[sass]],  
+});
+```
+
+- nextConfig: Configuration for the plugin. You can also overwrite specific configuration keys for a phase.
+
+```jsx
+const { withNativebase } = require("@native-base/next-adapter");
+
+module.exports = withNativebase({
+  nextConfig: {
+    projectRoot: __dirname,
+    webpack: (config, options) => {
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        "react-native$": "react-native-web",
+      };
+      config.resolve.extensions = [
+        ".web.js",
+        ".web.ts",
+        ".web.tsx",
+        ...config.resolve.extensions,
+      ];
+      return config;
+    },
+  },
+});
+```
+
+### 2. Phase
+
+If the plugin should only be applied in specific phases, you can specify them here. You can   use  all phases [next.js provides](https://github.com/zeit/next.js/blob/canary/packages/next/next-server/lib/constants.ts#L1-L4).
 
 ```jsx
 const withPlugins = require('next-compose-plugins');
