@@ -1,6 +1,6 @@
 {
   "name": "@native-base/next-adapter",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "build/index.js",
   "license": "MIT",
   "scripts": {
