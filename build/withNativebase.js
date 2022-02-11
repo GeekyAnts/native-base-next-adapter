@@ -26,6 +26,7 @@ function withNativebase(config, phase) {
     // const { webpack, ...config } = nextConfig;
     var dependencies = [
         "native-base",
+        "react-native",
         "react-native-svg",
         "react-native-web",
         "react-native-safe-area-context",

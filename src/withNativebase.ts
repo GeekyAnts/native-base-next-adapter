@@ -17,6 +17,7 @@ export default function withNativebase(
   // const { webpack, ...config } = nextConfig;
   let dependencies = [
     "native-base",
+    "react-native",
     "react-native-svg",
     "react-native-web",
     "react-native-safe-area-context",
