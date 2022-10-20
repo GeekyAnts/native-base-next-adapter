@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 import { AppRegistry } from "react-native-web";
-
+import { getStyleElement as getResponsiveQueryStyleElement } from "native-base";
 // Force Next-generated DOM elements to fill their parent's height
 const normalizeNextElements = `
   html, body, #__next {
@@ -45,6 +45,7 @@ export async function getInitialProps({ renderPage }) {
     // eslint-disable-next-line react/jsx-key
     <style dangerouslySetInnerHTML={{ __html: normalizeNextElements }} />,
     getStyleElement(),
+    getResponsiveQueryStyleElement(),
   ];
   return { ...page, styles: Children.toArray(styles) };
 }
