@@ -37,18 +37,6 @@ const normalizeNextElements = `
   }
 `;
 
-export async function getInitialProps({ renderPage }) {
-  AppRegistry.registerComponent("Main", () => Main);
-  const { getStyleElement } = AppRegistry.getApplication("Main");
-  const page = renderPage();
-  const styles = [
-    // eslint-disable-next-line react/jsx-key
-    <style dangerouslySetInnerHTML={{ __html: normalizeNextElements }} />,
-    getStyleElement(),
-    getResponsiveQueryStyleElement(),
-  ];
-  return { ...page, styles: Children.toArray(styles) };
-}
 class Document extends NextDocument {
   render() {
     return (
@@ -62,5 +50,35 @@ class Document extends NextDocument {
     );
   }
 }
-Document.getInitialProps = getInitialProps;
+
+// getInitialProps Implementation is taken from https://github.com/vercel/next.js/discussions/37911
+
+Document.getInitialProps = async (ctx) => {
+  AppRegistry.registerComponent("Main", () => Main);
+  const { getStyleElement } = AppRegistry.getApplication("Main");
+  const originalRenderPage = ctx.renderPage;
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) => <App {...props} />,
+      });
+    const initialProps = await NextDocument.getInitialProps(ctx);
+    const styles = [
+      // eslint-disable-next-line react/jsx-key
+      <style dangerouslySetInnerHTML={{ __html: normalizeNextElements }} />,
+      getStyleElement(),
+      getResponsiveQueryStyleElement(),
+    ];
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          {Children.toArray(styles)}
+        </>
+      ),
+    };
+  } finally {
+  }
+};
 export default Document;
