@@ -37,18 +37,6 @@ const normalizeNextElements = `
   }
 `;
 
-export async function getInitialProps({ renderPage }) {
-  AppRegistry.registerComponent("Main", () => Main);
-  const { getStyleElement } = AppRegistry.getApplication("Main");
-  const page = renderPage();
-  const styles = [
-    // eslint-disable-next-line react/jsx-key
-    <style dangerouslySetInnerHTML={{ __html: normalizeNextElements }} />,
-    getStyleElement(),
-    getResponsiveQueryStyleElement(),
-  ];
-  return { ...page, styles: Children.toArray(styles) };
-}
 class Document extends NextDocument {
   render() {
     return (
